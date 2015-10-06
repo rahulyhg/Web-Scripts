@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<title>Send Data using Ajax</title>
+
+<style type="text/css">
+</style>
+// the ajax sscript is written in the script tag..
+<script>
+//function for sending using ajax
+function sendData()
+{
+
+var x=document.getElementById("txtfield");
+var xhr;
+//create a XML request according to the web browser..
+if(window.XMLHttpRequest)
+{
+ xhr = new XMLHttpRequest();
+}
+else if(window.ActiveXObject)
+{
+  xhr = new ActiveXObject(Microsoft.XMLHTTP);
+}
+// store the data to be sent in the variable called data
+  var data="name="+x;
+  
+  xhr.open("POST","getdatabyajax.php",true);
+  xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  // send the data to the specified url..
+  xhr.send(data);
+  }
+</script>
+</head>
+<body>
+<!-- create the text field which will take the data from user -->
+<input type='text' name="myfield" id="txtfield" placeholder="Enter the data to be sent using ajax">
+<input type='button' onclick="sendData()" value="Send">
+</body>
+</html>
