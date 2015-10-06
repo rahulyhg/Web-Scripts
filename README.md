@@ -1,2 +1,1 @@
-# PHP-Scripts
-php scripts for various functions in web development
+the repository contains many web scripts to be used for various purposes..
