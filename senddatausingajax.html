@@ -26,10 +26,19 @@ else if(window.ActiveXObject)
 // store the data to be sent in the variable called data
   var data="name="+x;
   
-  xhr.open("POST","getdatabyajax.php",true);
+  xhr.open("POST","test.php",true);
   xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   // send the data to the specified url..
   xhr.send(data);
+  // display the data returned by the php script
+  
+       xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById("show_data").innerHTML = xhr.responseText;
+            }
+        }
+        xhttp.open("GET", "test.php", true);
+        xhttp.send();
   }
 </script>
 </head>
@@ -37,5 +46,6 @@ else if(window.ActiveXObject)
 <!-- create the text field which will take the data from user -->
 <input type='text' name="myfield" id="txtfield" placeholder="Enter the data to be sent using ajax">
 <input type='button' onclick="sendData()" value="Send">
+<div id="show_data"></div>
 </body>
 </html>
