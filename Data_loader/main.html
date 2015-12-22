@@ -1,0 +1,36 @@
+<html>
+<script>
+function loader_function()
+{
+
+var xhr;
+//create a XML request according to the web browser..
+if(window.XMLHttpRequest)
+{
+ xhr = new XMLHttpRequest();
+}
+else if(window.ActiveXObject)
+{
+  xhr = new ActiveXObject(Microsoft.XMLHTTP);
+}
+  xhr.open("POST","main.php",true);
+  xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  // send the data to the specified url..
+  xhr.send();
+  
+  
+  // display the data returned by the php script
+  // onreadystatechange is a event which is triggered when the changestate value changes...
+       xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('loader_image').style.visibility = "hidden";
+                document.getElementById("main_content").innerHTML = xhr.responseText;
+            }
+        }
+  }
+</script>
+<body onload="loader_function();">
+<div id="loader_image" style="position:absolute;top:40%;left:45%"><img src="images/loader.gif"></div>
+<div id="main_content"></div>
+</body>
+</html>
