@@ -1,0 +1,32 @@
+
+
+<?php
+//created By Ameya Shukla
+//The code is used to save a file as a binary object...
+//get the file name using the file_get_content function..
+//we are using blob(binary large object) datatype 
+
+
+//The table structure will be ......
+//	1	name	varchar(200)	
+//	2	file	mediumblob			
+//	3	file_type	varchar(200)	
+//	4	file_size	int(200)	
+
+
+//here goes the code..
+$file_content=file_get_contents("images/loader.gif");
+$file_name="images/loader.gif";
+echo $file_type="gif";
+$file_size=filesize($file_name);
+//query for inserting the data in the database
+$conn=mysqli_connect("localhost","root","","mera_database");
+$query="INSERT INTO binary_data_saving VALUES ( '$file_name','" . mysqli_real_escape_string($conn, $file_content) . "','$file_type',$file_size)";
+$execute=mysqli_query($conn,$query);
+if($execute)
+{
+	echo "!!....Data inserted successfully....!!";
+}else{
+	echo "!!...Data insertion fails...!!";
+}
+?>
